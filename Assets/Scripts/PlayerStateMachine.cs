@@ -15,7 +15,7 @@ public abstract class PlayerBaseState
     public abstract void Tick(float deltaTime);
     public abstract void Exit();
 }
-
+ 
 // The main state machine component
 public class PlayerStateMachine : MonoBehaviour
 {
@@ -253,5 +253,11 @@ public class PlayerStateMachine : MonoBehaviour
 
         return hit == null; // Can stand up if nothing is hit
     }
-
+void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Coin"))
+    {
+        other.gameObject.SetActive(false); // Deactivate the coin
+    }
+}
 }
