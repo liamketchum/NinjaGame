@@ -107,8 +107,8 @@ public class CrouchState : PlayerBaseState
          }
 
         // Stop crouch animation if needed
-        // if (stateMachine.Animator != null)
-        //     stateMachine.Animator.StopPlayback(); // Or transition to appropriate animation
+        if (stateMachine.Animator != null)
+             stateMachine.Animator.StopPlayback(); // Or transition to appropriate animation
 
         Debug.Log($"[CrouchState] Exiting Crouch State after {Time.time - enterTime:F2}s");
     }
