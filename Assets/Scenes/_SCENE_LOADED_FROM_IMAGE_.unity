@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7e3a1bac9704046921de317e4b4e13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelFileName: Level-1-1.png
+  levelFileName: Level-1-2.png
   colorToPrefab:
   - color:
       serializedVersion: 2
@@ -186,8 +186,8 @@ MonoBehaviour:
     prefab: {fileID: 103682, guid: 3e707ed2970f72f4fa722591811337ed, type: 3}
   - color:
       serializedVersion: 2
-      rgba: 0
-    prefab: {fileID: 0}
+      rgba: 4278219007
+    prefab: {fileID: 5287283195004867925, guid: 99ddc80addb384e40a7da5552fb807d9, type: 3}
   - color:
       serializedVersion: 2
       rgba: 0
