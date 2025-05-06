@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 21226484}
   - component: {fileID: 4447567895472329101}
   - component: {fileID: -1043942232417894440}
+  - component: {fileID: -8388710898503669032}
   m_Layer: 6
   m_Name: Enemy Snail
   m_TagString: Untagged
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -148,6 +149,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  waypoints:
-  - {fileID: 5287283195004867925, guid: 99ddc80addb384e40a7da5552fb807d9, type: 3}
-  - {fileID: 5205160326874153257, guid: d3c4d630ccf5f427a9f9ae1c761aa60c, type: 3}
+--- !u!50 &-8388710898503669032
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103682}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

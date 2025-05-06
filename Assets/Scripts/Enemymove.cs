@@ -7,49 +7,50 @@ using UnityEditor.VersionControl;
 using UnityEngine.Timeline;
 public class Enemymove : MonoBehaviour
 {
+    private bool isMovingleft = true;
+    private GameObject player;
     [SerializeField]private states state;
     private bool startofstate = true;
     private enum states 
     {
         patrol
     }
-    private GameObject player;
-    public List<GameObject> waypoints;
-    private int currentPoint;
-    private Vector3 targetPos;
+
     private int _speed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentPoint = 0;
-        _speed = 1;
-        patrol();
+       
+        _speed = 5;
+      
     }
 
-    void OnTrigerStay2D(Collider2D other)
+    
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Debug.Log("Collided with  + {other.gameObject.name}");
+        if (other.gameObject.CompareTag("Trigger"))
         {
-            targetPos = (other.gameObject.transform.position);
+            isMovingleft = !isMovingleft;
+            print("triggered");
         }
-
     }
-
     void patrol()
     {
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentPoint].transform.position, _speed * Time.deltaTime);   
-        if (Vector3.Distance(transform.position, waypoints[currentPoint].transform.position) < 0.1f)
+        if (isMovingleft)
         {
-            currentPoint++;
-            if (currentPoint >= waypoints.Count)
-            {
-                currentPoint = 0;
-            }
+            transform.position = new Vector3(transform.position.x - _speed * Time.deltaTime, transform.position.y, transform.position.z);
+
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x + _speed * Time.deltaTime, transform.position.y, transform.position.z);
         }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        patrol();
+
     }
 }
