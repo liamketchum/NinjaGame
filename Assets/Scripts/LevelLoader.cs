@@ -10,6 +10,7 @@ public class ColorToPrefab {
 public class LevelLoader : MonoBehaviour {
 
 	public string levelFileName;
+	public bool isLoaded = false;
 
 	//public Texture2D levelMap;
 
@@ -58,6 +59,8 @@ public class LevelLoader : MonoBehaviour {
 
 			}
 		}
+
+		isLoaded = true;
 	}
 
 	void SpawnTileAt( Color32 c, int x, int y ) {

@@ -4,7 +4,6 @@ public class CrouchState : PlayerBaseState
 {
     private float enterTime;
     private float crouchMoveSpeed;
-
     public CrouchState(PlayerStateMachine stateMachine) : base(stateMachine)
     {
         // Calculate actual crouch speed based on multipliers

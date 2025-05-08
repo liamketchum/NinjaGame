@@ -11,6 +11,14 @@ public class Enemymove : MonoBehaviour
     private GameObject player;
     [SerializeField]private states state;
     private bool startofstate = true;
+
+    public  List<GameObject> waypoints;
+    public Vector2 target;
+    public int waypointsIndex = 0;
+
+    public LevelLoader levelLoader;
+
+    
     private enum states 
     {
         patrol
@@ -20,9 +28,14 @@ public class Enemymove : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
-        _speed = 5;
-      
+       levelLoader = FindObjectOfType<LevelLoader>();
+        _speed = 3;
+
+        if (levelLoader.isLoaded)
+        {
+            waypoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Waypoint"));
+            target = waypoints[waypointsIndex].transform.position;
+        }
     }
 
     
@@ -37,6 +50,17 @@ public class Enemymove : MonoBehaviour
     }
     void patrol()
     {
+        transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, target) < 0.1f)
+        {
+            waypointsIndex++;
+            if (waypointsIndex >= waypoints.Count)
+            {
+                waypointsIndex = 0;
+            }
+            target = waypoints[waypointsIndex].transform.position;
+        }   
+        /*
         if (isMovingleft)
         {
             transform.position = new Vector3(transform.position.x - _speed * Time.deltaTime, transform.position.y, transform.position.z);
@@ -46,6 +70,7 @@ public class Enemymove : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x + _speed * Time.deltaTime, transform.position.y, transform.position.z);
         }
+        */
     }
     // Update is called once per frame
     void Update()
