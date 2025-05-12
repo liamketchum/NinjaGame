@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class ShootState : PlayerBaseState
 {
+    private float Cooldown = 1;
+    private int Bullet;
+    public GameObject BulletPrefab;
+    private int fireRate = 1; // Fire rate in seconds
+    
     // Store reference to the state machine
     // No factory needed based on PlayerStateMachine.cs structure
 private PlayerStateMachine stateMachine;
@@ -10,11 +15,33 @@ private PlayerStateMachine stateMachine;
         this.stateMachine = stateMachine;
     }
 
+    void Start()
+    {
+        
+            
+    }
+    void Update()
+    {
+        
+   
+            Cooldown = fireRate; // Reset cooldown
+        
+         
+    }
     public override void Enter()
     {
         // Logic when entering the shoot state (e.g., play animation, aim)
         Debug.Log("Player entered Shoot State");
          stateMachine.Animator.SetBool("IsShooting", true); // Example animation trigger
+         
+         if (Input.GetButtonDown("Fire1") && Cooldown <= 0)
+        {
+            // Fire the bullet
+            Debug.Log("Bullet Fired");
+            GameObject bullet = GameObject.Instantiate(BulletPrefab, stateMachine.transform.position, Quaternion.identity);
+            Bullet script = bullet.GetComponent<Bullet>();
+            Cooldown = fireRate; // Reset cooldown
+        }
     }
 
     public override void Tick(float deltaTime)
