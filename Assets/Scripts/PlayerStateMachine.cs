@@ -10,7 +10,6 @@ public abstract class PlayerBaseState
     {
         this.stateMachine = stateMachine;
     }
-
     public abstract void Enter();
     public abstract void Tick(float deltaTime);
     public abstract void Exit();
@@ -19,6 +18,7 @@ public abstract class PlayerBaseState
 // The main state machine component
 public class PlayerStateMachine : MonoBehaviour
 {
+    public GameObject bulletPrefab;
     private bool wasGroundedLastFrame = true;
 
     // --- Coyote time (grounded grace period) ---
@@ -28,6 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
     [field: SerializeField] public float WallJumpForce { get; private set; } = 7.5f;
     [field: SerializeField] public int MaxJumps { get; private set; } = 2; // 1 = no double jump, 2 = double jump
     public int JumpsRemaining { get; set; }
+    public float Cooldown;
 
     [Header("Collider Settings")]
     [SerializeField] private CapsuleCollider2D playerCollider; // Assign in Inspector
@@ -144,6 +145,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void Update()
     {
+        Cooldown -= Time.deltaTime;
         // Update coyote time timer
         if (jumpGroundedGraceTimer > 0f)
             jumpGroundedGraceTimer -= Time.deltaTime;
@@ -260,4 +262,6 @@ void OnTriggerEnter2D(Collider2D other)
         other.gameObject.SetActive(false); // Deactivate the coin
     }
 }
+
+    
 }
