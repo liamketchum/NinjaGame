@@ -158,9 +158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffec91aed31c4c3b8a77c6630e5d50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7629352206955114714, guid: df27324aa596540468450ff6ea471706, type: 3}
   <MoveSpeed>k__BackingField: 5
   <WallJumpForce>k__BackingField: 7.5
   <MaxJumps>k__BackingField: 2
+  Cooldown: 0
   playerCollider: {fileID: 1779346489392483852}
   standingColliderSize: {x: 0.5, y: 1}
   standingColliderOffset: {x: 0, y: 0}

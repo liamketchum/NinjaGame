@@ -7,11 +7,13 @@ using UnityEditor.VersionControl;
 using UnityEngine.Timeline;
 public class Enemymove : MonoBehaviour
 {
+    [SerializeField] private int enemyhealth =1;
     private bool isMovingleft = true;
     private GameObject player;
     [SerializeField]private states state;
     private bool startofstate = true;
-
+    
+public GameObject enemy;
     public  List<GameObject> waypoints;
     public Vector2 target;
     public int waypointsIndex = 0;
@@ -39,15 +41,24 @@ public class Enemymove : MonoBehaviour
     }
 
     
+    
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Collided with  + {other.gameObject.name}");
-        if (other.gameObject.CompareTag("Trigger"))
+        if (other.CompareTag("bullet"))
         {
-            isMovingleft = !isMovingleft;
-            print("triggered");
+            Debug.Log("Hit");
+           Destroy(other.gameObject);
+            if (enemyhealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                enemyhealth--;
+            }
         }
     }
+    
     void patrol()
     {
         transform.position = Vector2.MoveTowards(transform.position, target, _speed * Time.deltaTime);
